@@ -1,0 +1,11 @@
+---
+- job: tests
+  trigger: pull_request
+  targets:
+    - fedora-latest
+  skip_build: True
+  tf_extra_params:
+    environments:
+      - os: null
+        variables:
+          IMAGE: fedora:rawhide
