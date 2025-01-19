@@ -1,0 +1,21 @@
+provision:
+  how: container
+  image: quay.io/buildah/stable
+
+discover:
+  how: shell
+  tests:
+    - name: build
+      framework: shell
+      test: |
+        set -exuo pipefail
+
+        dnf -y install direnv just
+
+        direnv allow
+        eval $(direnv export bash)
+
+        just all
+
+execute:
+  how: tmt

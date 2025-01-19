@@ -1,0 +1,2 @@
+#!/bin/sh
+sg onepassword-cli -c "op read op://Personal/hfwwfdimpvglmjnb2wrbqlx3mq/password"
