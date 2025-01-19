@@ -1,6 +1,8 @@
-manifest/cache/
-manifest/logs/
-manifest/tmp/
-symphony/
-workspace/uploads/
-install-log.txt
+# Cosign private key
+cosign.private
+
+# Decrypted files
+files/system/etc/pki/ca-trust/source/anchors/Current-IT-Root-CAs.pem
+
+# This file is created by direnv
+.vault_pass
