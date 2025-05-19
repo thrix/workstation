@@ -1,0 +1,31 @@
+provision:
+  how: container
+  # WORKAROUND: cannot use latest buildah, see https://github.com/containers/buildah/issues/5988
+  image: quay.io/buildah/stable:v1.37
+
+prepare:
+  how: install
+  package:
+    - ansible-core
+    - direnv
+    - just
+
+discover:
+  how: shell
+  tests:
+    - name: container
+      framework: shell
+      test: |
+        set -exuo pipefail
+
+        direnv allow
+        eval "$(direnv export bash)"
+
+        # Use `vfs` driver, mounting of other containers with `overlay` driver will not work
+        # https://github.com/containers/podman/issues/17057
+        sed -i 's/^driver = .*/driver = "vfs"/' /etc/containers/storage.conf
+
+        just login decrypt build-containerfile push
+
+execute:
+  how: tmt

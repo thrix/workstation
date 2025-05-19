@@ -1,0 +1,59 @@
+file:
+    /etc/opt/chrome/policies/managed/redhat.json:
+        exists: true
+        mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents:
+            - redhat.com
+    /etc/pki/ca-trust/source/anchors/Current-IT-Root-CAs.pem:
+        exists: true
+        mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /opt:
+        exists: true
+        mode: "0777"
+        owner: root
+        group: root
+        linked-to: var/opt
+        filetype: symlink
+        contents: []
+    /usr/lib/opt/google:
+        exists: true
+        mode: "0755"
+        owner: root
+        group: root
+        filetype: directory
+        contents: []
+    /usr/lib/opt/smfp-common:
+        exists: true
+        mode: "0755"
+        owner: root
+        group: root
+        filetype: directory
+        contents: []
+    /usr/share/polkit-1/actions/com.1password.1Password.policy:
+        exists: true
+        mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /usr/share/wireplumber/scripts/node/suspend-node.lua:
+        exists: false
+        contents: null
+package:
+    fontawesome-fonts-all:
+        installed: true
+    mate-polkit:
+        installed: true
+    nautilus:
+        installed: true
+    xerox-3020:
+        installed: true
+        versions:
+            - 1.0.0-1
