@@ -1,0 +1,29 @@
+---
+repos:
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+        exclude: Containerfile
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+      - id: check-yaml
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.22.0
+    hooks:
+      - id: gitleaks
+
+  - repo: local
+    hooks:
+      - id: generate-containerfile
+        name: generate containerfile
+        entry: just generate
+        language: system
+        pass_filenames: false
+        files:
+          (?x)^(
+            recipes/.+|
+            files/.+|
+          )$

@@ -1,0 +1,51 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# image will be published to ghcr.io/thrix/workstation
+name: workstation
+description: Thrix's workstation
+
+base-image: ghcr.io/ublue-os/sway-atomic-main
+image-version: latest
+
+modules:
+  - type: rpm-ostree
+    install:
+      - fontawesome-fonts-all
+      - mate-polkit
+      - nautilus
+      - https://gitlab.com/mvadkert/xerox-3020/-/raw/main/xerox-3020-1.0.0-1.x86_64.rpm
+      - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    optfix:
+      - google
+      - smfp-common
+
+  - type: bling
+    install:
+      - rpmfusion
+
+  - type: files
+    files:
+      - source: system
+        destination: /
+
+  - type: fonts
+    fonts:
+      google-fonts:
+        - Source Code Pro
+      nerd-fonts:
+        - FiraCode
+        - Iosevka
+        - JetBrainsMono
+
+  - type: script
+    snippets:
+      # Update CA certs
+      - update-ca-trust
+      # Remove node suspend in wireplumber
+      # Seems causing sound dropping out for a brief time on Fedora 41
+      - rm -f /usr/share/wireplumber/scripts/node/suspend-node.lua
+
+  - type: systemd
+    system:
+      enabled:
+        - systemd-timesyncd
