@@ -53,6 +53,6 @@ login:
 test:
     dgoss run --stop-timeout=0 --entrypoint sleep {{ image }} infinity
 
-# Run goss tests
+# Edit goss tests
 test-edit:
     dgoss edit --stop-timeout=0 --entrypoint sleep {{ image }} infinity
