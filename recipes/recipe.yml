@@ -44,8 +44,26 @@ modules:
       # Remove node suspend in wireplumber
       # Seems causing sound dropping out for a brief time on Fedora 41
       - rm -f /usr/share/wireplumber/scripts/node/suspend-node.lua
+      # Set timezone to Prague
+      - ln -sf /usr/share/zoneinfo/Europe/Prague /etc/localtime
 
   - type: systemd
     system:
       enabled:
         - systemd-timesyncd
+
+  - type: default-flatpaks
+    notify: true
+    system:
+      install:
+        - com.dropbox.Client
+        - com.tomjwatson.Emote
+        - com.transmissionbt.Transmission
+        - com.yubico.yubioath
+        - im.riot.Riot
+        - io.podman_desktop.PodmanDesktop
+        - org.fedoraproject.MediaWriter
+        - org.flameshot.Flameshot
+        - org.gimp.GIMP
+        - org.libreoffice.LibreOffice
+        - org.videolan.VLC
