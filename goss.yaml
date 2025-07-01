@@ -1,4 +1,110 @@
 file:
+    /etc/NetworkManager/system-connections/RHAMS2.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/RHBRQ2.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/RHRDU2.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/RHVPN.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/at86.nordvpn.com.udp.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/be148.nordvpn.com.udp.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/ch217.nordvpn.com.udp.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/cz101.nordvpn.com.udp.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/de785.nordvpn.com.udp.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/dk152.nordvpn.com.udp.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/hu48.nordvpn.com.udp.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/no151.nordvpn.com.udp.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/pl128.nordvpn.com.udp.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/NetworkManager/system-connections/us5063.nordvpn.com.udp.nmconnection:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/localtime:
+        exists: true
+        mode: "0777"
+        owner: root
+        group: root
+        linked-to: /usr/share/zoneinfo/Europe/Prague
+        filetype: symlink
+        contents: []
     /etc/opt/chrome/policies/managed/redhat.json:
         exists: true
         mode: "0644"
@@ -10,6 +116,146 @@ file:
     /etc/pki/ca-trust/source/anchors/Current-IT-Root-CAs.pem:
         exists: true
         mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/at86.nordvpn.com.udp-ca.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/at86.nordvpn.com.udp-tls-auth.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/be148.nordvpn.com.udp-ca.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/be148.nordvpn.com.udp-tls-auth.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/ch217.nordvpn.com.udp-ca.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/ch217.nordvpn.com.udp-tls-auth.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/cz101.nordvpn.com.udp-ca.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/cz101.nordvpn.com.udp-tls-auth.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/de785.nordvpn.com.udp-ca.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/de785.nordvpn.com.udp-tls-auth.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/dk152.nordvpn.com.udp-ca.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/dk152.nordvpn.com.udp-tls-auth.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/hu48.nordvpn.com.udp-ca.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/hu48.nordvpn.com.udp-tls-auth.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/no151.nordvpn.com.udp-ca.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/no151.nordvpn.com.udp-tls-auth.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/pl128.nordvpn.com.udp-ca.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/pl128.nordvpn.com.udp-tls-auth.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/us5063.nordvpn.com.udp-ca.pem:
+        exists: true
+        mode: "0600"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
+    /etc/ssl/nordvpn/us5063.nordvpn.com.udp-tls-auth.pem:
+        exists: true
+        mode: "0600"
         owner: root
         group: root
         filetype: file

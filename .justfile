@@ -17,8 +17,8 @@ decrypt:
     @for file in $(find . -name *.encrypted); do \
       echo "Decrypting file '$file' ..."; \
       ansible-vault decrypt --output ${file%.encrypted} $file; \
-      chmod 644 ${file%.encrypted}; \
     done
+    chmod 644 files/system/etc/pki/ca-trust/source/anchors/Current-IT-Root-CAs.pem
 
 # Build container image
 build:
