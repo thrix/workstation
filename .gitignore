@@ -2,7 +2,9 @@
 cosign.private
 
 # Decrypted files
+files/system/etc/NetworkManager/system-connections/*.nmconnection
 files/system/etc/pki/ca-trust/source/anchors/Current-IT-Root-CAs.pem
+files/system/etc/ssl/nordvpn/*.pem
 
 # This file is created by direnv
 .vault_pass
