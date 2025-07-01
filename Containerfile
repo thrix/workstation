@@ -31,7 +31,7 @@ COPY cosign.pub /keys/workstation.pub
 
 
 # Main image
-FROM ghcr.io/ublue-os/sway-atomic-main@sha256:83ba21ffac3f90c5299d8fa7c23cbac80f0fe581e99554b18c8e91ea8ab4a98a AS workstation
+FROM ghcr.io/ublue-os/sway-atomic-main@sha256:724501170ee38fb8779f53d07a02138ffa4824a0974fc2e6c9b5013037a83ae3 AS workstation
 ARG RECIPE=./recipes/recipe.yml
 ARG IMAGE_REGISTRY=localhost
 ARG CONFIG_DIRECTORY="/tmp/files"
@@ -111,6 +111,6 @@ RUN --mount=type=bind,from=ghcr.io/blue-build/cli/build-scripts:7828e7872b342d05
 LABEL org.opencontainers.image.title="workstation"
 LABEL org.opencontainers.image.description="Thrix's workstation"
 LABEL org.opencontainers.image.source=""
-LABEL org.opencontainers.image.base.digest="sha256:83ba21ffac3f90c5299d8fa7c23cbac80f0fe581e99554b18c8e91ea8ab4a98a"
+LABEL org.opencontainers.image.base.digest="sha256:724501170ee38fb8779f53d07a02138ffa4824a0974fc2e6c9b5013037a83ae3"
 LABEL org.opencontainers.image.base.name="ghcr.io/ublue-os/sway-atomic-main:latest"
 LABEL io.artifacthub.package.readme-url=https://raw.githubusercontent.com/blue-build/cli/main/README.md
