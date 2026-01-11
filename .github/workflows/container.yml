@@ -2,6 +2,7 @@ name: workstation
 
 on:
   pull_request:
+  workflow_dispatch:
   schedule:
     - cron: '0 7 * * *'  # runs daily at 02:00 UTC
 
