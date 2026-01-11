@@ -10,14 +10,12 @@ image-version: 43
 modules:
   - type: rpm-ostree
     install:
+      - copyq
       - fontawesome-fonts-all
       - mate-polkit
       - nautilus
       - https://gitlab.com/mvadkert/xerox-3020/-/raw/main/xerox-3020-1.0.0-1.x86_64.rpm
       - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-    optfix:
-      - google
-      - smfp-common
 
   - type: bling
     install:
