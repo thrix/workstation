@@ -8,4 +8,3 @@ files/system/etc/ssl/nordvpn/*.pem
 
 # This file is created by direnv
 .vault_pass
-/.bluebuild-scripts_*

@@ -1,4 +1,4 @@
-ARG BASE_IMAGE="quay.io/fedora-ostree-desktops/sway-atomic@sha256:dc37aee9e1ef0d6bba9865d9a37c438a5a61f997b45ce4060166fad7d4d08420"
+ARG BASE_IMAGE="quay.io/fedora-ostree-desktops/sway-atomic@sha256:f66aa4c04c515219a06505747543851a4a02e7db9498dec1588d6178f0ae45f6"
 FROM "${BASE_IMAGE}" AS workstation
 
 # This stage is responsible for holding onto
@@ -109,7 +109,7 @@ RUN \
 
 # Labels are added last since they cause cache misses with buildah
 LABEL io.artifacthub.package.readme-url="https://raw.githubusercontent.com/blue-build/cli/main/README.md"
-LABEL org.opencontainers.image.base.digest="sha256:dc37aee9e1ef0d6bba9865d9a37c438a5a61f997b45ce4060166fad7d4d08420"
+LABEL org.opencontainers.image.base.digest="sha256:f66aa4c04c515219a06505747543851a4a02e7db9498dec1588d6178f0ae45f6"
 LABEL org.opencontainers.image.base.name="quay.io/fedora-ostree-desktops/sway-atomic:43"
 LABEL org.opencontainers.image.description="Thrix's workstation"
 LABEL org.opencontainers.image.source=""
