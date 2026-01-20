@@ -21,11 +21,16 @@ discover:
         direnv allow
         eval "$(direnv export bash)"
 
+        VERSION=v0.3.23
+        curl -L "https://github.com/goss-org/goss/releases/download/${VERSION}/goss-linux-amd64" -o /usr/bin/goss
+        curl -L "https://github.com/goss-org/goss/releases/download/${VERSION}/dgoss" -o /usr/bin/dgoss
+        chmod +rx /usr/bin/goss /usr/bin/dgoss
+
         # Use `vfs` driver, mounting of other containers with `overlay` driver will not work
         # https://github.com/containers/podman/issues/17057
         sed -i 's/^driver = .*/driver = "vfs"/' /etc/containers/storage.conf
 
-        just login decrypt build-containerfile push
+        just login decrypt build-containerfile test push
 
 execute:
   how: tmt
