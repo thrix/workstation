@@ -56,13 +56,17 @@ modules:
         scope: system
         install:
           - com.dropbox.Client
+          - com.freerdp.FreeRDP
+          - com.slack.Slack
           - com.tomjwatson.Emote
           - com.transmissionbt.Transmission
           - com.yubico.yubioath
-          - im.riot.Riot
+          - im.riot.Riot  # Element
           - io.podman_desktop.PodmanDesktop
+          - md.obsidian.Obsidian
           - org.fedoraproject.MediaWriter
           - org.flameshot.Flameshot
           - org.gimp.GIMP
           - org.libreoffice.LibreOffice
           - org.videolan.VLC
+          - org.virt_manager.virt-manager

@@ -1,7 +1,5 @@
 provision:
-  how: container
-  # WORKAROUND: cannot use latest buildah, see https://github.com/containers/buildah/issues/5988
-  image: quay.io/buildah/stable:v1.37
+  how: virtual
 
 prepare:
   how: install
@@ -9,6 +7,8 @@ prepare:
     - ansible-core
     - direnv
     - just
+    - podman
+    - xz
 
 discover:
   how: shell
@@ -21,11 +21,11 @@ discover:
         direnv allow
         eval "$(direnv export bash)"
 
-        # Use `vfs` driver, mounting of other containers with `overlay` driver will not work
-        # https://github.com/containers/podman/issues/17057
-        sed -i 's/^driver = .*/driver = "vfs"/' /etc/containers/storage.conf
+        # Install bluebuild
+        bash <(curl -s https://raw.githubusercontent.com/blue-build/cli/main/install.sh)
 
-        just login decrypt build-containerfile push
+        # Login to container registry, decrypt secret data, build and push the new container image
+        just login decrypt build push
 
 execute:
   how: tmt
