@@ -24,10 +24,6 @@ decrypt:
 build:
     bluebuild build --registry {{ registry }}
 
-# Build container image from Containerfile
-build-containerfile:
-    buildah build -t {{ image }}
-
 # Run building via tmt
 build-tmt:
     tmt run -vvv -e VAULT_PASSWORD={{ vault_password }} -e PUSH_PASSWORD={{ push_password }} plan --name /ci/build
@@ -36,18 +32,14 @@ build-tmt:
 pre-commit-tmt:
     tmt run -vvv -e VAULT_PASSWORD={{ vault_password }} -e PUSH_PASSWORD={{ push_password }} plan --name /ci/pre-commit
 
-# Generate Containerfile
-generate:
-    bluebuild generate | grep -Ev "(org\.blue-build\.build-id|org\.opencontainers\.image\.created)" > Containerfile
-
 # Push image to registry
 push:
-    buildah push {{ image }}
+    podman push {{ image }}
 
 # Login to the container registry
 login:
     @echo "As '{{ push_username }}' to '{{ registry }}'"
-    @buildah login -u "{{ push_username }}" -p "{{ push_password }}" "{{ registry }}"
+    @podman login -u "{{ push_username }}" -p "{{ push_password }}" "{{ registry }}"
 
 # Run goss tests
 test:
