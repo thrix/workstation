@@ -8,6 +8,11 @@ base-image: quay.io/fedora-ostree-desktops/sway-atomic
 image-version: 43
 
 modules:
+  - type: files
+    files:
+      - source: system
+        destination: /
+
   - type: rpm-ostree
     install:
       - copyq
@@ -16,15 +21,11 @@ modules:
       - nautilus
       - https://gitlab.com/mvadkert/xerox-3020/-/raw/main/xerox-3020-1.0.0-1.x86_64.rpm
       - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+      - /usr/share/rpms/nvidia.atmos-agent-3.96.5.x86_64.rpm
 
   - type: bling
     install:
       - rpmfusion
-
-  - type: files
-    files:
-      - source: system
-        destination: /
 
   - type: fonts
     fonts:
