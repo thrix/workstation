@@ -8,6 +8,11 @@ base-image: quay.io/fedora-ostree-desktops/sway-atomic
 image-version: 43
 
 modules:
+  - type: files
+    files:
+      - source: system
+        destination: /
+
   - type: rpm-ostree
     install:
       - copyq
@@ -16,15 +21,11 @@ modules:
       - nautilus
       - https://gitlab.com/mvadkert/xerox-3020/-/raw/main/xerox-3020-1.0.0-1.x86_64.rpm
       - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+      - /usr/share/rpms/nvidia.atmos-agent-3.96.5.x86_64.rpm
 
   - type: bling
     install:
       - rpmfusion
-
-  - type: files
-    files:
-      - source: system
-        destination: /
 
   - type: fonts
     fonts:
@@ -44,6 +45,9 @@ modules:
       - rm -f /usr/share/wireplumber/scripts/node/suspend-node.lua
       # Set timezone to Prague
       - ln -sf /usr/share/zoneinfo/Europe/Prague /etc/localtime
+      # Install CBDT format Noto Color Emoji — Chrome cannot render the COLRv1
+      # format shipped by Fedora 43's google-noto-color-emoji-fonts package
+      - curl -sL -o /usr/share/fonts/google-noto-color-emoji-fonts/NotoColorEmoji-CBDT.ttf "https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoColorEmoji.ttf"
 
   - type: systemd
     system:
