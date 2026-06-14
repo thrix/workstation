@@ -1,0 +1,13 @@
+[Unit]
+Description=Create /var/swapfile if it does not exist
+DefaultDependencies=no
+After=local-fs.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/bash -c '\
+  [ -f /var/swapfile ] && exit 0; \
+  fallocate -l 16G /var/swapfile && \
+  chmod 600 /var/swapfile && \
+  mkswap /var/swapfile'
