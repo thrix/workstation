@@ -14,6 +14,10 @@ all: decrypt build test login push
 
 # Decrypt secret files
 decrypt:
+    @for file in $(find . -name *.encrypted.xz); do \
+      echo "Unpacking encrypted file '$file' ..."; \
+      xz -dk $file; \
+    done
     @for file in $(find . -name *.encrypted); do \
       echo "Decrypting file '$file' ..."; \
       ansible-vault decrypt --output ${file%.encrypted} $file; \
