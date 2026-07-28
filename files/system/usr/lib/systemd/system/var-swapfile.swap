@@ -1,0 +1,10 @@
+[Unit]
+Description=Swapfile on /var/swapfile
+After=create-swapfile.service
+Requires=create-swapfile.service
+
+[Swap]
+What=/var/swapfile
+
+[Install]
+WantedBy=swap.target

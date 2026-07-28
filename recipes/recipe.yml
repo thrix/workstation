@@ -49,6 +49,7 @@ modules:
     system:
       enabled:
         - systemd-timesyncd
+        - var-swapfile.swap
 
   - type: default-flatpaks@v2
     configurations:
