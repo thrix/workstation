@@ -321,6 +321,8 @@ file:
         exists: false
         contents: null
 package:
+    bcvk:
+        installed: true
     fontawesome-fonts-all:
         installed: true
     mate-polkit:

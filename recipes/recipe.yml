@@ -15,6 +15,7 @@ modules:
 
   - type: rpm-ostree
     install:
+      - bcvk
       - copyq
       - fontawesome-fonts-all
       - mate-polkit
