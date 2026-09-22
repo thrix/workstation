@@ -19,6 +19,8 @@ modules:
       - fontawesome-fonts-all
       - mate-polkit
       - nautilus
+      - netbird
+      - netbird-ui
       - https://gitlab.com/mvadkert/xerox-3020/-/raw/main/xerox-3020-1.0.0-1.x86_64.rpm
       - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
       - /usr/share/rpms/nvidia.atmos-agent-3.96.5.x86_64.rpm
@@ -45,10 +47,18 @@ modules:
       - rm -f /usr/share/wireplumber/scripts/node/suspend-node.lua
       # Set timezone to Prague
       - ln -sf /usr/share/zoneinfo/Europe/Prague /etc/localtime
+      # The netbird rpm %post runs "netbird service install", which generates
+      # /etc/systemd/system/netbird.service. That shadows the unit shipped in
+      # /usr/lib and logs to /var/log/netbird, a directory nothing creates, so
+      # the service dies with status=209/STDOUT on a fresh boot. Drop it and
+      # let the shipped unit, which logs to the journal, take over.
+      - rm -f /etc/systemd/system/netbird.service
+      - rm -f /etc/systemd/system/multi-user.target.wants/netbird.service
 
   - type: systemd
     system:
       enabled:
+        - netbird
         - systemd-timesyncd
         - var-swapfile.swap
 

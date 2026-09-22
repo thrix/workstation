@@ -49,10 +49,12 @@ done < <({ ip -4 route show default; ip -6 route show default; } |
 managed='~testing-farm.io ~compute.amazonaws.com ~redhat.com'
 wanted='~testing-farm.io ~compute.amazonaws.com'
 
-# redhat.com only while the Red Hat VPN is absent. Its link carries redhat.com
-# as a search domain, which matches the same two labels ours would: resolved
-# scores that a tie, queries both scopes, and takes whichever answers first --
-# so internal names would intermittently get NXDOMAIN from a public resolver.
+# redhat.com only while no Red Hat VPN link is up, and the two clients announce
+# themselves differently. The OpenVPN profiles carried redhat.com as a search
+# domain, matching the same two labels ours does: resolved scores that a tie,
+# queries both scopes and takes whichever answers first. NetBird carries
+# redhat.corp alongside its own ~., which ~redhat.com would outrank outright.
+# Either way internal names reach a public resolver, which NXDOMAINs them.
 claimed=false
 while read -r line; do
 	case $line in
@@ -60,6 +62,7 @@ while read -r line; do
 	esac
 	case "$line " in
 		*" redhat.com "* | *" ~redhat.com "*) claimed=true ;;
+		*" redhat.corp "* | *" ~redhat.corp "*) claimed=true ;;
 	esac
 done < <(resolvectl domain)
 $claimed || wanted="$wanted ~redhat.com"

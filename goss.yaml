@@ -120,6 +120,14 @@ file:
         group: root
         filetype: file
         contents: []
+    /etc/pki/rpm-gpg/RPM-GPG-KEY-netbird:
+        exists: true
+        mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents:
+            - BEGIN PGP PUBLIC KEY BLOCK
     /etc/ssl/nordvpn/at86.nordvpn.com.udp-ca.pem:
         exists: true
         mode: "0600"
@@ -260,6 +268,18 @@ file:
         group: root
         filetype: file
         contents: []
+    /etc/systemd/system/netbird.service:
+        exists: false
+        contents: null
+    /etc/yum.repos.d/netbird.repo:
+        exists: true
+        mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents:
+            - baseurl=https://pkgs.netbird.io/yum/
+            - gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-netbird
     /opt:
         exists: true
         mode: "0777"
@@ -282,6 +302,14 @@ file:
         group: root
         filetype: directory
         contents: []
+    /usr/lib/systemd/system/netbird.service:
+        exists: true
+        mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents:
+            - ExecStart=/usr/bin/netbird service run
     /usr/share/polkit-1/actions/com.1password.1Password.policy:
         exists: true
         mode: "0644"
@@ -298,6 +326,10 @@ package:
     mate-polkit:
         installed: true
     nautilus:
+        installed: true
+    netbird:
+        installed: true
+    netbird-ui:
         installed: true
     xerox-3020:
         installed: true

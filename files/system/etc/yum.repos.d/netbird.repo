@@ -1,0 +1,7 @@
+[NetBird]
+name=NetBird
+baseurl=https://pkgs.netbird.io/yum/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-netbird
+repo_gpgcheck=1

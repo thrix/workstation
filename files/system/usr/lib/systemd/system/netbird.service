@@ -1,0 +1,20 @@
+# The netbird rpm ships only /usr/bin/netbird. Upstream expects
+# "netbird service install" to generate this unit at runtime, which picks its
+# backend from the live init system and so cannot run during an image build.
+# This is that generated unit, with logging sent to the journal instead of
+# /var/log/netbird: systemd does not create parent directories for file:
+# outputs, and that path does not exist on a fresh image-mode boot.
+[Unit]
+Description=NetBird mesh network client
+ConditionFileIsExecutable=/usr/bin/netbird
+After=network.target syslog.target
+
+[Service]
+ExecStart=/usr/bin/netbird service run --log-level info --daemon-addr unix:///var/run/netbird.sock --log-file console
+Restart=always
+RestartSec=120
+EnvironmentFile=-/etc/sysconfig/netbird
+Environment=SYSTEMD_UNIT=netbird
+
+[Install]
+WantedBy=multi-user.target
