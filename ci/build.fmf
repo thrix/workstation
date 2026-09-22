@@ -6,6 +6,7 @@ prepare:
   package:
     - ansible-core
     - direnv
+    - git-lfs
     - just
     - podman
     - xz
@@ -23,6 +24,18 @@ discover:
 
         # Install bluebuild
         bash <(curl -s https://raw.githubusercontent.com/blue-build/cli/main/install.sh)
+
+        # The atmos rpm lives in Git LFS. A checkout without git-lfs leaves a
+        # 134 byte pointer behind, and the first thing "just decrypt" does is
+        # "xz -dk" over it, which dies with "File format not recognized". A
+        # no-op when the content is already there.
+        if [ -d .git ]; then
+          git lfs install --local
+          git lfs pull
+        fi
+
+        # Fail here rather than midway through decrypt if the rpm is a pointer
+        xz -t files/system/usr/share/rpms/*.encrypted.xz
 
         # Login to container registry, decrypt secret data, build and push the new container image
         just login decrypt build push
