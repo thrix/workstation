@@ -25,16 +25,19 @@ discover:
         # Install bluebuild
         bash <(curl -s https://raw.githubusercontent.com/blue-build/cli/main/install.sh)
 
-        # The atmos rpm lives in Git LFS. A checkout without git-lfs leaves a
-        # 134 byte pointer behind, and the first thing "just decrypt" does is
-        # "xz -dk" over it, which dies with "File format not recognized". A
-        # no-op when the content is already there.
-        if [ -d .git ]; then
-          git lfs install --local
-          git lfs pull
+        # The atmos rpm lives in Git LFS. Testing Farm copies a plain tree into
+        # the guest with no .git, so "git lfs pull" has nothing to work with
+        # and the 134 byte pointer stays on disk -- "just decrypt" then dies on
+        # "xz -dk" with "File format not recognized". Clone the repo instead,
+        # where git-lfs smudges the real content on checkout, and copy it over.
+        if ! xz -t files/system/usr/share/rpms/*.encrypted.xz 2>/dev/null; then
+          git clone --depth 1 https://github.com/thrix/workstation /tmp/lfs-src
+          cp /tmp/lfs-src/files/system/usr/share/rpms/*.encrypted.xz \
+            files/system/usr/share/rpms/
+          rm -rf /tmp/lfs-src
         fi
 
-        # Fail here rather than midway through decrypt if the rpm is a pointer
+        # Fail here rather than midway through decrypt if it is still a pointer
         xz -t files/system/usr/share/rpms/*.encrypted.xz
 
         # Login to container registry, decrypt secret data, build and push the new container image
