@@ -1,4 +1,22 @@
+command:
+    fonts:
+        exec: "fc-list : family"
+        exit-status: 0
+        stdout:
+            - FiraCode Nerd Font
+            - Iosevka Nerd Font
+            - JetBrainsMono Nerd Font
+            - Source Code Pro
+        stderr: []
+        timeout: 10000
 file:
+    /etc/NetworkManager/dispatcher.d/50-keep-public-dns-off-atmos.sh:
+        exists: true
+        mode: "0755"
+        owner: root
+        group: root
+        filetype: file
+        contents: []
     /etc/NetworkManager/system-connections/RHAMS2.nmconnection:
         exists: true
         mode: "0600"
@@ -97,6 +115,14 @@ file:
         group: root
         filetype: file
         contents: []
+    /etc/fonts/conf.d/99-noto-color-emoji-override.conf:
+        exists: true
+        mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents:
+            - Noto Color Emoji
     /etc/localtime:
         exists: true
         mode: "0777"
@@ -128,6 +154,14 @@ file:
         filetype: file
         contents:
             - BEGIN PGP PUBLIC KEY BLOCK
+    /etc/sysctl.d/88-user.conf:
+        exists: true
+        mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents:
+            - user.max_inotify_instances = 8192
     /etc/ssl/nordvpn/at86.nordvpn.com.udp-ca.pem:
         exists: true
         mode: "0600"
@@ -268,6 +302,38 @@ file:
         group: root
         filetype: file
         contents: []
+    /etc/systemd/system/multi-user.target.wants/atmosd.service:
+        exists: true
+        mode: "0777"
+        owner: root
+        group: root
+        linked-to: /usr/lib/systemd/system/atmosd.service
+        filetype: symlink
+        contents: []
+    /etc/systemd/system/multi-user.target.wants/netbird.service:
+        exists: true
+        mode: "0777"
+        owner: root
+        group: root
+        linked-to: /usr/lib/systemd/system/netbird.service
+        filetype: symlink
+        contents: []
+    /etc/systemd/system/swap.target.wants/var-swapfile.swap:
+        exists: true
+        mode: "0777"
+        owner: root
+        group: root
+        linked-to: /usr/lib/systemd/system/var-swapfile.swap
+        filetype: symlink
+        contents: []
+    /etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service:
+        exists: true
+        mode: "0777"
+        owner: root
+        group: root
+        linked-to: /usr/lib/systemd/system/systemd-timesyncd.service
+        filetype: symlink
+        contents: []
     /etc/systemd/system/netbird.service:
         exists: false
         contents: null
@@ -285,7 +351,15 @@ file:
         mode: "0777"
         owner: root
         group: root
-        linked-to: var/opt
+        linked-to: /var/opt
+        filetype: symlink
+        contents: []
+    /usr/bin/atmos:
+        exists: true
+        mode: "0777"
+        owner: root
+        group: root
+        linked-to: /usr/lib/AxisSecurity/run-atmos
         filetype: symlink
         contents: []
     /usr/lib/opt/google:
@@ -302,6 +376,14 @@ file:
         group: root
         filetype: directory
         contents: []
+    /usr/lib/systemd/system/create-swapfile.service:
+        exists: true
+        mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents:
+            - mkswap /var/swapfile
     /usr/lib/systemd/system/netbird.service:
         exists: true
         mode: "0644"
@@ -310,6 +392,30 @@ file:
         filetype: file
         contents:
             - ExecStart=/usr/bin/netbird service run
+    /usr/lib/systemd/system/var-swapfile.swap:
+        exists: true
+        mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents:
+            - What=/var/swapfile
+    /usr/lib/tmpfiles.d/99-bluebuild-optfix-google.conf:
+        exists: true
+        mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents:
+            - /usr/lib/opt/google
+    /usr/lib/tmpfiles.d/atmos-agent.conf:
+        exists: true
+        mode: "0644"
+        owner: root
+        group: root
+        filetype: file
+        contents:
+            - d /var/lib/AxisSecurity 0700 root root -
     /usr/share/polkit-1/actions/com.1password.1Password.policy:
         exists: true
         mode: "0644"
@@ -321,9 +427,15 @@ file:
         exists: false
         contents: null
 package:
+    atmos-agent:
+        installed: true
     bcvk:
         installed: true
+    copyq:
+        installed: true
     fontawesome-fonts-all:
+        installed: true
+    google-chrome-stable:
         installed: true
     mate-polkit:
         installed: true
@@ -332,6 +444,10 @@ package:
     netbird:
         installed: true
     netbird-ui:
+        installed: true
+    rpmfusion-free-release:
+        installed: true
+    rpmfusion-nonfree-release:
         installed: true
     xerox-3020:
         installed: true
