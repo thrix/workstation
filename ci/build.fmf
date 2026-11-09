@@ -16,6 +16,7 @@ discover:
   tests:
     - name: container
       framework: shell
+      duration: 3h
       test: |
         set -exuo pipefail
 
